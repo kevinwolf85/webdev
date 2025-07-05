@@ -49,10 +49,28 @@ async function summarize(result) {
   }
 }
 
+const readline = require('readline');
+
+async function promptUrl() {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  return new Promise(resolve => {
+    rl.question('Enter URL to audit: ', answer => {
+      rl.close();
+      resolve(answer.trim());
+    });
+  });
+}
+
 async function run() {
-  const url = process.argv[2];
+  let url = process.argv[2];
   if (!url) {
-    console.error('Usage: node page_audit.js <url>');
+    url = await promptUrl();
+  }
+  if (!url) {
+    console.error('No URL provided. Usage: node page_audit.js <url>');
     process.exit(1);
   }
   try {

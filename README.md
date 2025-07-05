@@ -19,10 +19,14 @@ npm install
 
 ## Usage
 
-Run the audit script with a URL. Set `OPENAI_API_KEY` to enable summarization:
+Run the audit script with a URL or let it prompt you for one. Set `OPENAI_API_KEY` to enable summarization:
 
 ```bash
+# With a URL provided
 npm run audit -- https://example.com
+
+# Or run without arguments and enter a URL when prompted
+npm run audit
 ```
 
 The script will output any console errors, failed network requests, and the total
