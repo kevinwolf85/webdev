@@ -3,11 +3,17 @@ const { OpenAI } = require('openai');
 
 async function auditPage(url) {
   const start = Date.now();
-  const browser = await puppeteer.launch({
+  const launchOptions = {
     headless: 'new',
-    executablePath: '/usr/bin/chromium-browser',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  };
+
+  const envPath = process.env.CHROME_PATH || process.env.PUPPETEER_EXECUTABLE_PATH;
+  if (envPath) {
+    launchOptions.executablePath = envPath;
+  }
+
+  const browser = await puppeteer.launch(launchOptions);
   const page = await browser.newPage();
 
   const consoleErrors = [];

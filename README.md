@@ -10,6 +10,7 @@ provided.
 - Node.js 18 or later
 - Chromium or Chrome installed locally
 - Optional: set `PUPPETEER_SKIP_DOWNLOAD=true` to skip Chromium download when installing dependencies
+- If Chrome/Chromium isn't in your PATH, set `CHROME_PATH` (or `PUPPETEER_EXECUTABLE_PATH`) to point to the browser binary
 
 ## Installation
 
